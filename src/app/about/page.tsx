@@ -1,3 +1,4 @@
+import { TerminalHeading } from "@/components/terminal-heading";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Arrow, Orb, SectionLabel } from "@/components/design";
@@ -6,12 +7,8 @@ export default function About() {
   return (
     <div className="shell inner-page">
       <SectionLabel number="01">A LITTLE CONTEXT</SectionLabel>
-      <div className="page-heading hero-enter">
-        <h1>
-          Behind the code.
-          <br />
-          <span className="gradient-text">A curious mind.</span>
-        </h1>
+      <div className="page-heading">
+        <TerminalHeading lines={["Behind the code.", "A curious mind."]} />
         <p>Hey, I’m Sanhith. This is where my story will unfold.</p>
       </div>
       <div className="about-grid">

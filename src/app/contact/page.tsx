@@ -1,3 +1,4 @@
+import { TerminalHeading } from "@/components/terminal-heading";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Arrow, SectionLabel } from "@/components/design";
@@ -6,12 +7,8 @@ export default function Contact() {
   return (
     <div className="shell inner-page">
       <SectionLabel number="03">START A CONVERSATION</SectionLabel>
-      <div className="page-heading hero-enter">
-        <h1>
-          Good ideas.
-          <br />
-          <span className="gradient-text">Better together.</span>
-        </h1>
+      <div className="page-heading">
+        <TerminalHeading lines={["Good ideas.", "Better together."]} />
         <p>
           A question, a collaboration, or just a hello.
           <br />

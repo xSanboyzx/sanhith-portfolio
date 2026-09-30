@@ -1,3 +1,4 @@
+import { TerminalHeading } from "@/components/terminal-heading";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Arrow, ProjectCard, SectionLabel } from "@/components/design";
@@ -6,12 +7,8 @@ export default function Projects() {
   return (
     <div className="shell inner-page">
       <SectionLabel number="02">EXPERIMENTS & EXPLORATIONS</SectionLabel>
-      <div className="page-heading hero-enter">
-        <h1>
-          From a small idea.
-          <br />
-          <span className="gradient-text">To something real.</span>
-        </h1>
+      <div className="page-heading">
+        <TerminalHeading lines={["From a small idea.", "To something real."]} />
         <p>
           A growing collection of things made with intention.
           <br />

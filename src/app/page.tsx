@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { LanguageRibbon } from "@/components/language-ribbon";
+import { TerminalHeading } from "@/components/terminal-heading";
 import { Arrow, Orb, ProjectCard, SectionLabel } from "@/components/design";
 
 export default function Home() {
@@ -9,13 +11,7 @@ export default function Home() {
           <div className="eyebrow hero-enter">
             <span className="status-dot" /> A PERSONAL SPACE ON THE INTERNET
           </div>
-          <h1 className="hero-enter delay-1">
-            Curiosity.
-            <br />
-            Code.
-            <br />
-            <span className="gradient-text">Possibility.</span>
-          </h1>
+          <TerminalHeading />
           <p className="hero-description hero-enter delay-2">
             Hey, I’m Sanhith. Welcome to my corner of the web.
             <br className="desktop-break" /> A place for the things I build,
@@ -41,27 +37,7 @@ export default function Home() {
           INDEPENDENT MIND. ENDLESS POSSIBILITIES.
         </span>
       </section>
-      <div className="ticker" aria-hidden="true">
-        <div className="ticker-track">
-          {[0, 1].map((copy) => (
-            <div className="ticker-group" key={copy}>
-              {[0, 1].flatMap((repeat) =>
-                [
-                  "CURIOUS BY NATURE",
-                  "ALWAYS EXPLORING",
-                  "MAKING THINGS MATTER",
-                  "LEARNING BY DOING",
-                ].map((phrase) => (
-                  <span className="ticker-item" key={repeat + phrase}>
-                    {phrase}
-                    <b>✳</b>
-                  </span>
-                )),
-              )}
-            </div>
-          ))}
-        </div>
-      </div>
+      <LanguageRibbon />
       <section className="section shell" id="selected">
         <div className="section-heading reveal">
           <div>
