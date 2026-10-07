@@ -1,0 +1,226 @@
+.artwork {
+  display: block;
+  width: 100%;
+  max-width: 564px;
+  height: auto;
+  aspect-ratio: 1;
+  overflow: visible;
+}
+
+.scene {
+  animation: appear 0.15s linear 0.95s both;
+}
+.line {
+  fill: none;
+  stroke: #b78aff;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.head-outline {
+  fill: #0d0b12;
+  stroke: var(--coder-edge);
+}
+.face-line {
+  stroke: #dcc8ff;
+  stroke-width: 3.5;
+}
+.shirt-outline {
+  fill: #100d17;
+  stroke: var(--coder-edge);
+  stroke-width: 3.5;
+}
+.hair-outline {
+  fill: #15101e;
+  stroke: #c39afa;
+  stroke-width: 3.5;
+}
+.fine-line {
+  stroke: #b78aff;
+  stroke-width: 2;
+}
+.ground-line {
+  stroke-width: 1;
+  opacity: 0.18;
+}
+.laptop-outline {
+  stroke: var(--coder-edge);
+  stroke-width: 3.2;
+}
+.laptop-detail {
+  stroke: #9768cc;
+  stroke-width: 1.5;
+}
+.laptop-mark {
+  fill: #dcc8ff;
+  font-family: var(--font-orbitron), var(--font-jetbrains-mono), monospace;
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-anchor: middle;
+}
+.character {
+  animation: idle-drift 8s 2.5s ease-in-out infinite;
+}
+.draw {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+  animation: draw-in 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.95s both;
+}
+.reveal {
+  animation: appear 0.55s ease-out 1.95s both;
+}
+.head {
+  transform-origin: 239px 174px;
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.artwork:hover .head {
+  transform: translateY(-3px) rotate(-3deg);
+}
+.eyes {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: blink 8s 2.5s infinite;
+}
+.eye-energy {
+  animation: eye-charge 8s 2.5s ease-in-out infinite;
+}
+.glasses-shine {
+  opacity: 0;
+  animation: lens-sweep 8s 2.5s ease-in-out infinite;
+}
+.eye-burst {
+  opacity: 0;
+  transform-origin: 267px 162px;
+  animation: eye-burst 0.95s ease-out both;
+  pointer-events: none;
+}
+.light {
+  animation: screen-light 8s 2.5s ease-in-out infinite;
+}
+@keyframes draw-in {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes eye-burst {
+  0% {
+    opacity: 0;
+    transform: scale(0.25);
+  }
+  30% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  55% {
+    opacity: 0.9;
+    transform: scale(2.4);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(2.6);
+  }
+}
+@keyframes blink {
+  0%,
+  66%,
+  70%,
+  100% {
+    transform: scaleY(1);
+  }
+  68% {
+    transform: scaleY(0.08);
+  }
+}
+@keyframes lens-sweep {
+  0%,
+  10% {
+    opacity: 0;
+    transform: translateX(-35px);
+  }
+  14% {
+    opacity: 0.75;
+  }
+  28% {
+    opacity: 0.75;
+    transform: translateX(112px);
+  }
+  32%,
+  100% {
+    opacity: 0;
+    transform: translateX(125px);
+  }
+}
+@keyframes eye-charge {
+  0%,
+  10%,
+  40%,
+  100% {
+    opacity: 0.75;
+  }
+  24% {
+    opacity: 1;
+  }
+}
+@keyframes idle-drift {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-1.5px);
+  }
+}
+@keyframes screen-light {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  24% {
+    opacity: 0.85;
+  }
+  60% {
+    opacity: 0.65;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .artwork,
+  .artwork *,
+  .artwork *::before,
+  .artwork *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  .draw {
+    stroke-dashoffset: 0;
+  }
+  .reveal {
+    opacity: 1;
+  }
+  .eye-energy {
+    opacity: 0.8;
+  }
+  .glasses-shine {
+    opacity: 0;
+  }
+  .scene {
+    opacity: 1;
+  }
+  .eye-burst {
+    opacity: 0;
+  }
+  .artwork:hover .head {
+    transform: none;
+  }
+}

@@ -1,0 +1,524 @@
+<svg
+  id="midnight-coder"
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 512 512"
+  role="img"
+  aria-labelledby="title description"
+>
+  <title id="title">Midnight Coder</title>
+  <desc id="description">
+    A curly-haired coder with one glowing violet eye behind rounded glasses and
+    a calm, mouthless face. The eye sends a bright flare toward the viewer once
+    before the character draws itself into view. He sits behind a charcoal
+    laptop with a glowing s. mark.
+  </desc>
+  <defs>
+    <radialGradient id="ambient">
+      <stop stop-color="#b78aff" stop-opacity=".12" />
+      <stop offset="1" stop-color="#b78aff" stop-opacity="0" />
+    </radialGradient>
+    <linearGradient id="lid-fill" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#20152e" />
+      <stop offset="1" stop-color="#100d17" />
+    </linearGradient>
+    <linearGradient id="edge" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#dcc8ff" />
+      <stop offset="1" stop-color="#9768cc" />
+    </linearGradient>
+    <filter id="soft-glow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="9" />
+    </filter>
+    <filter id="mark-glow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+    <filter id="eye-glow" x="-150%" y="-150%" width="400%" height="400%">
+      <feGaussianBlur stdDeviation="2.5" result="aura" />
+      <feMerge>
+        <feMergeNode in="aura" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+    <radialGradient id="eye-aura">
+      <stop stop-color="#c293ff" stop-opacity=".5" />
+      <stop offset="1" stop-color="#b78aff" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="burst-aura">
+      <stop stop-color="#fffaff" stop-opacity="1" />
+      <stop offset=".12" stop-color="#eee0ff" stop-opacity=".98" />
+      <stop offset=".35" stop-color="#c391ff" stop-opacity=".75" />
+      <stop offset=".7" stop-color="#9651ec" stop-opacity=".25" />
+      <stop offset="1" stop-color="#b78aff" stop-opacity="0" />
+    </radialGradient>
+    <linearGradient
+      id="flare-ray"
+      gradientUnits="userSpaceOnUse"
+      x1="188"
+      y1="162"
+      x2="346"
+      y2="162"
+    >
+      <stop stop-color="#dcc8ff" stop-opacity="0" />
+      <stop offset=".35" stop-color="#dcc8ff" stop-opacity=".5" />
+      <stop offset=".5" stop-color="#fffaff" stop-opacity="1" />
+      <stop offset=".65" stop-color="#dcc8ff" stop-opacity=".5" />
+      <stop offset="1" stop-color="#dcc8ff" stop-opacity="0" />
+    </linearGradient>
+    <linearGradient id="lens-sheen">
+      <stop stop-color="#dcc8ff" stop-opacity="0" />
+      <stop offset=".55" stop-color="#dcc8ff" stop-opacity=".4" />
+      <stop offset=".8" stop-color="#f4ecff" stop-opacity=".9" />
+      <stop offset="1" stop-color="#dcc8ff" stop-opacity="0" />
+    </linearGradient>
+    <clipPath id="lenses">
+      <rect
+        x="187"
+        y="152"
+        width="47"
+        height="32"
+        rx="12"
+        transform="rotate(2 210 168)"
+      />
+      <rect
+        x="245"
+        y="150"
+        width="45"
+        height="31"
+        rx="12"
+        transform="rotate(-4 267 166)"
+      />
+    </clipPath>
+    <style>
+      .scene {
+        animation: appear 0.15s linear 0.95s both;
+      }
+      .line {
+        fill: none;
+        stroke: #b78aff;
+        stroke-width: 4;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .head-outline {
+        fill: #0d0b12;
+        stroke: url(#edge);
+      }
+      .face-line {
+        stroke: #dcc8ff;
+        stroke-width: 3.5;
+      }
+      .shirt-outline {
+        fill: #100d17;
+        stroke: url(#edge);
+        stroke-width: 3.5;
+      }
+      .hair-outline {
+        fill: #15101e;
+        stroke: #c39afa;
+        stroke-width: 3.5;
+      }
+      .fine-line {
+        stroke: #b78aff;
+        stroke-width: 2;
+      }
+      .ground-line {
+        stroke-width: 1;
+        opacity: 0.18;
+      }
+      .laptop-outline {
+        stroke: url(#edge);
+        stroke-width: 3.2;
+      }
+      .laptop-detail {
+        stroke: #9768cc;
+        stroke-width: 1.5;
+      }
+      .character {
+        animation: idle-drift 8s 2.5s ease-in-out infinite;
+      }
+      .draw {
+        stroke-dasharray: 1;
+        stroke-dashoffset: 0;
+        animation: draw-in 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.95s both;
+      }
+      .reveal {
+        animation: appear 0.55s ease-out 1.95s both;
+      }
+      .head {
+        transform-origin: 239px 174px;
+        transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+      }
+      svg:hover .head {
+        transform: translateY(-3px) rotate(-3deg);
+      }
+      .eyes {
+        transform-box: fill-box;
+        transform-origin: center;
+        animation: blink 8s 2.5s infinite;
+      }
+      .eye-energy {
+        animation: eye-charge 8s 2.5s ease-in-out infinite;
+      }
+      .glasses-shine {
+        opacity: 0;
+        animation: lens-sweep 8s 2.5s ease-in-out infinite;
+      }
+      .eye-burst {
+        opacity: 0;
+        transform-origin: 267px 162px;
+        animation: eye-burst 0.95s ease-out both;
+        pointer-events: none;
+      }
+      .light {
+        animation: screen-light 8s 2.5s ease-in-out infinite;
+      }
+      @keyframes draw-in {
+        from {
+          stroke-dashoffset: 1;
+        }
+        to {
+          stroke-dashoffset: 0;
+        }
+      }
+      @keyframes appear {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      @keyframes eye-burst {
+        0% {
+          opacity: 0;
+          transform: scale(0.25);
+        }
+        30% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        55% {
+          opacity: 0.9;
+          transform: scale(2.4);
+        }
+        100% {
+          opacity: 0;
+          transform: scale(2.6);
+        }
+      }
+      @keyframes blink {
+        0%,
+        66%,
+        70%,
+        100% {
+          transform: scaleY(1);
+        }
+        68% {
+          transform: scaleY(0.08);
+        }
+      }
+      @keyframes lens-sweep {
+        0%,
+        10% {
+          opacity: 0;
+          transform: translateX(-35px);
+        }
+        14% {
+          opacity: 0.75;
+        }
+        28% {
+          opacity: 0.75;
+          transform: translateX(112px);
+        }
+        32%,
+        100% {
+          opacity: 0;
+          transform: translateX(125px);
+        }
+      }
+      @keyframes eye-charge {
+        0%,
+        10%,
+        40%,
+        100% {
+          opacity: 0.75;
+        }
+        24% {
+          opacity: 1;
+        }
+      }
+      @keyframes idle-drift {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-1.5px);
+        }
+      }
+      @keyframes screen-light {
+        0%,
+        100% {
+          opacity: 0.55;
+        }
+        24% {
+          opacity: 0.85;
+        }
+        60% {
+          opacity: 0.65;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation: none !important;
+          transition: none !important;
+        }
+        .draw {
+          stroke-dashoffset: 0;
+        }
+        .reveal {
+          opacity: 1;
+        }
+        .eye-energy {
+          opacity: 0.8;
+        }
+        .glasses-shine {
+          opacity: 0;
+        }
+        .scene {
+          opacity: 1;
+        }
+        .eye-burst {
+          opacity: 0;
+        }
+        svg:hover .head {
+          transform: none;
+        }
+      }
+    </style>
+  </defs>
+
+  <g class="scene">
+    <g class="reveal">
+      <ellipse cx="265" cy="284" rx="205" ry="202" fill="url(#ambient)" />
+      <ellipse
+        cx="262"
+        cy="422"
+        rx="158"
+        ry="12"
+        fill="#b78aff"
+        opacity=".045"
+      />
+    </g>
+
+    <!-- The outlined shirt and neck sit behind the laptop; hands stay concealed. -->
+    <g class="character">
+      <path
+        class="line draw shirt-outline"
+        pathLength="1"
+        d="M218 229 L217 252 Q211 259 185 264 Q159 269 151 293 L139 328 L144 384 Q145 394 161 398 L320 392 Q335 390 335 375 L338 323 Q333 284 309 269 L266 254 L263 230Z"
+      />
+      <path
+        class="line draw fine-line"
+        pathLength="1"
+        d="M217 253 Q239 279 266 254 M213 260 Q238 288 269 261"
+      />
+      <path
+        class="line draw fine-line"
+        pathLength="1"
+        d="M153 293 L176 305 M309 285 L292 302 M168 310 L161 349 M312 308 L320 345"
+        opacity=".6"
+      />
+
+      <g class="head">
+        <path
+          class="line draw fine-line"
+          pathLength="1"
+          d="M185 163 Q172 158 176 179 Q177 190 187 190 M294 160 Q308 156 304 177 Q304 188 294 189"
+        />
+        <path
+          class="line draw head-outline"
+          pathLength="1"
+          d="M185 154 C184 124 204 106 238 105 C273 103 294 124 296 154 L293 184 Q288 207 273 219 L245 239 Q239 242 232 237 L211 223 Q189 207 185 182Z"
+        />
+        <path
+          class="line draw hair-outline"
+          pathLength="1"
+          d="M184 157 C175 153 173 143 178 135 C169 125 174 112 184 109 C179 97 187 87 199 88 C201 77 214 73 224 80 C234 68 250 74 253 82 C266 72 281 81 281 92 C296 88 307 99 302 112 C314 117 313 132 304 138 C310 150 301 159 293 157 L288 143 C278 149 269 144 266 136 C257 146 245 143 241 134 C233 145 220 141 216 135 C210 144 198 145 192 138Z"
+        />
+        <g class="reveal line fine-line" opacity=".65">
+          <path
+            d="M188 111 C188 101 204 100 206 109 C209 117 198 122 194 116 M216 93 C221 85 234 91 231 99 C228 105 220 104 220 100 M245 95 C250 86 263 93 260 101 M270 114 C270 104 285 103 288 112 C290 119 281 124 277 118 M218 121 C223 113 235 119 232 126"
+          />
+        </g>
+        <g class="reveal">
+          <g class="light" fill="#b78aff" filter="url(#soft-glow)" opacity=".6">
+            <ellipse cx="214" cy="170" rx="27" ry="15" opacity=".19" />
+            <ellipse cx="268" cy="167" rx="25" ry="15" opacity=".19" />
+          </g>
+          <path class="line fine-line" d="M254 147 L278 141" />
+          <g class="eyes">
+            <!-- Only the violet eye is visible; the opposite lens stays empty. -->
+            <g class="eye-energy">
+              <ellipse
+                cx="267"
+                cy="162"
+                rx="23"
+                ry="17"
+                fill="url(#eye-aura)"
+              />
+              <g
+                filter="url(#eye-glow)"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M254 163 L266 157 L279 160 M256 166 Q267 170 277 163"
+                  fill="none"
+                  stroke="#c594ff"
+                  stroke-width="2"
+                />
+                <path
+                  d="M267 158 L270 163 L267 168 L264 163Z"
+                  fill="#eee0ff"
+                  stroke="#c99aff"
+                  stroke-width="1"
+                />
+                <path
+                  d="M251 164 L280 160"
+                  stroke="#b78aff"
+                  stroke-width="1"
+                  opacity=".45"
+                />
+              </g>
+            </g>
+          </g>
+          <g class="line face-line">
+            <rect
+              x="187"
+              y="152"
+              width="47"
+              height="32"
+              rx="12"
+              transform="rotate(2 210 168)"
+            />
+            <rect
+              x="245"
+              y="150"
+              width="45"
+              height="31"
+              rx="12"
+              transform="rotate(-4 267 166)"
+            />
+            <path
+              d="M234 162 Q240 158 245 162 M177 156 L187 160 M290 158 L299 153"
+            />
+          </g>
+          <g clip-path="url(#lenses)">
+            <g class="glasses-shine">
+              <path
+                d="M158 140 L180 136 L207 193 L185 197Z"
+                fill="url(#lens-sheen)"
+              />
+              <path
+                d="M177 137 L203 194"
+                stroke="#f4ecff"
+                stroke-width="1.5"
+                opacity=".7"
+              />
+            </g>
+          </g>
+          <path
+            class="line fine-line"
+            d="M241 175 L238 186 Q242 189 247 186"
+            opacity=".65"
+          />
+        </g>
+      </g>
+    </g>
+
+    <!-- A compact, tapered base and hinge give the laptop a distinct profile. -->
+    <path
+      d="M164 421 L340 411 L367 424 Q372 429 361 432 L179 441 Q170 441 164 435 L155 427 Q152 422 164 421Z"
+      fill="#100d17"
+    />
+    <path
+      class="line draw laptop-outline"
+      pathLength="1"
+      d="M164 421 L340 411 L367 424 Q372 429 361 432 L179 441 Q170 441 164 435 L155 427 Q152 422 164 421Z"
+    />
+    <path
+      class="line draw laptop-detail"
+      pathLength="1"
+      d="M167 430 L357 421 M242 428 L247 432 L270 431 L273 426"
+    />
+
+    <!-- A taller lid with a visible side edge keeps familiar laptop proportions. -->
+    <path
+      d="M169 317 L331 312 Q337 311 338 318 L349 410 Q350 417 343 418 L184 425 Q177 426 176 419 L162 326 Q161 319 169 317Z"
+      fill="url(#lid-fill)"
+    />
+    <path
+      class="line draw laptop-outline"
+      pathLength="1"
+      d="M169 317 L331 312 Q337 311 338 318 L349 410 Q350 417 343 418 L184 425 Q177 426 176 419 L162 326 Q161 319 169 317Z"
+    />
+    <path
+      class="line draw laptop-detail"
+      pathLength="1"
+      d="M340 321 L354 412 Q355 419 347 422 L186 430"
+    />
+    <g class="reveal" transform="translate(6 67) scale(.85)">
+      <g class="light">
+        <ellipse
+          cx="300"
+          cy="352"
+          rx="43"
+          ry="32"
+          fill="#b78aff"
+          opacity=".09"
+          filter="url(#soft-glow)"
+        />
+        <g
+          class="line"
+          stroke="#dcc8ff"
+          stroke-width="4"
+          filter="url(#mark-glow)"
+          transform="rotate(-4 300 352)"
+        >
+          <path
+            d="M306 340 C297 333 282 337 283 345 C284 353 306 348 307 358 C308 367 291 369 282 363"
+          />
+          <circle cx="320" cy="365" r="2.5" fill="#dcc8ff" stroke="none" />
+        </g>
+      </g>
+    </g>
+    <g class="reveal">
+      <path class="line ground-line" d="M126 450 L386 450" />
+    </g>
+  </g>
+  <!-- A transparent, contained flare precedes the one-time character entrance. -->
+  <g class="eye-burst">
+    <circle cx="267" cy="162" r="42" fill="url(#burst-aura)" />
+    <g filter="url(#eye-glow)" stroke-linecap="round">
+      <path
+        d="M188 162 L346 162"
+        stroke="url(#flare-ray)"
+        stroke-width="1"
+        opacity=".7"
+      />
+      <path
+        d="M267 143 L267 181"
+        stroke="#f8f0ff"
+        stroke-width="1"
+        opacity=".8"
+      />
+      <ellipse cx="267" cy="162" rx="4.5" ry="2.8" fill="#fffaff" />
+    </g>
+  </g>
+</svg>

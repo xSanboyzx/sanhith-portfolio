@@ -1,0 +1,149 @@
+.cursor,
+.pulse {
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+  pointer-events: none;
+  user-select: none;
+}
+
+.cursor {
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+
+.cursor[data-visible="true"] {
+  opacity: 1;
+}
+
+.reticle {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  color: #b78aff;
+  transform: translate(-50%, -50%);
+  filter: drop-shadow(0 0 1px #09090d) drop-shadow(0 0 3px #b78aff40);
+  transition:
+    width 160ms ease-out,
+    height 160ms ease-out,
+    color 160ms ease-out;
+}
+
+.cursor[data-hover="true"] .reticle {
+  width: 18px;
+  height: 18px;
+  color: #dcc8ff;
+}
+
+.orbit,
+.spin {
+  position: absolute;
+  inset: 0;
+}
+
+.cursor[data-visible="false"] .orbit {
+  animation-play-state: paused;
+}
+
+.topLeft,
+.topRight,
+.bottomLeft,
+.bottomRight {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border: 0 solid currentColor;
+}
+
+.topLeft {
+  left: 0;
+  top: 0;
+  border-top-width: 1.5px;
+  border-left-width: 1.5px;
+  border-top-left-radius: 2px;
+}
+
+.topRight {
+  right: 0;
+  top: 0;
+  border-top-width: 1.5px;
+  border-right-width: 1.5px;
+  border-top-right-radius: 2px;
+}
+
+.bottomLeft {
+  left: 0;
+  bottom: 0;
+  border-bottom-width: 1.5px;
+  border-left-width: 1.5px;
+  border-bottom-left-radius: 2px;
+}
+
+.bottomRight {
+  right: 0;
+  bottom: 0;
+  border-bottom-width: 1.5px;
+  border-right-width: 1.5px;
+  border-bottom-right-radius: 2px;
+}
+
+.dot {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #dcc8ff;
+  box-shadow:
+    0 0 0 1px #09090d80,
+    0 0 5px #b78aff60;
+  transform: translate(-50%, -50%);
+}
+
+.pulse {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #dcc8ff;
+  border-radius: 50%;
+  opacity: 0;
+  box-shadow: 0 0 6px #b78aff40;
+  transform: translate(-50%, -50%);
+}
+
+@media (hover: hover) and (pointer: fine) and (forced-colors: none) {
+  .orbit {
+    animation: orbit 8s linear infinite;
+  }
+
+  .cursor,
+  .pulse {
+    display: block;
+  }
+
+  .active,
+  .active * {
+    cursor: none !important;
+  }
+}
+
+@keyframes orbit {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orbit {
+    animation: none;
+  }
+
+  .reticle {
+    transition: none;
+  }
+
+  .pulse {
+    display: none;
+  }
+}

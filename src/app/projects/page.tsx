@@ -1,7 +1,8 @@
 import { TerminalHeading } from "@/components/terminal-heading";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Arrow, ProjectCard, SectionLabel } from "@/components/design";
+import { Arrow, SectionLabel } from "@/components/design";
+import { SelectedProjects } from "@/components/portfolio-work";
 export const metadata: Metadata = { title: "Projects" };
 export default function Projects() {
   return (
@@ -19,32 +20,19 @@ export default function Projects() {
         <span>
           <span className="status-dot" /> THE COLLECTION
         </span>
-        <span>FIRST PROJECTS COMING SOON</span>
+        <span>MOBILE DEVELOPMENT / APPLIED ML</span>
       </div>
-      <div className="project-grid">
-        <ProjectCard
-          variant="orbit"
-          number="01"
-          title="Something from nothing"
-          category="FUTURE PROJECT / 01"
-        />
-        <ProjectCard
-          variant="grid"
-          number="02"
-          title="Room to experiment"
-          category="FUTURE PROJECT / 02"
-        />
-      </div>
+      <SelectedProjects />
       <div className="project-note reveal">
         <span className="purple" aria-hidden="true">
           ✳
         </span>
         <div>
-          <h2>Every project has a first commit.</h2>
+          <h2>From curiosity to implementation.</h2>
           <p>
-            These are placeholders for upcoming work. Real projects, case
-            studies, and source links will take their place as the collection
-            grows.
+            My work brings together thoughtful interfaces, cloud-backed apps,
+            and practical machine learning. Explore the engineering details
+            above for the decisions and tools behind each build.
           </p>
         </div>
         <Link href="/about" className="text-link">

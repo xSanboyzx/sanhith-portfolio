@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { SiteShell } from "@/components/site-shell";
 import { StarField } from "@/components/star-field";
+import { ReticleCursor } from "@/components/reticle-cursor";
 
 const spaceGrotesk = localFont({
   src: "./fonts/space-grotesk-latin.woff2",
@@ -37,6 +38,7 @@ export default function RootLayout({
       <body>
         <StarField />
         <SiteShell>{children}</SiteShell>
+        <ReticleCursor />
       </body>
     </html>
   );

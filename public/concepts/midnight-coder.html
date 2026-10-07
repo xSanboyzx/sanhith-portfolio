@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Midnight Coder — Sanhith concept 01</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #09090d;
+        --purple: #b78aff;
+        --pale: #dcc8ff;
+        --muted: #a19aa9;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: #f4f0fa;
+        font-family: "Segoe UI", sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      button,
+      a {
+        font: inherit;
+      }
+      .shell {
+        width: min(1160px, calc(100% - 64px));
+        margin-inline: auto;
+      }
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 24px;
+        padding-block: 30px;
+        border-bottom: 1px solid #b78aff22;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 18px;
+        font-weight: 600;
+      }
+      .brand-mark {
+        display: grid;
+        place-items: center;
+        width: 32px;
+        height: 34px;
+        border: 1px solid #b78aff55;
+        border-radius: 9px;
+        background: #b78aff12;
+        color: var(--purple);
+      }
+      .label {
+        color: var(--muted);
+        font-family: monospace;
+        font-size: 10px;
+        letter-spacing: 1.8px;
+        line-height: 1.8;
+      }
+      .hero {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        gap: 32px;
+        min-height: 650px;
+        padding-block: 70px;
+      }
+      h1 {
+        margin: 22px 0;
+        font-size: clamp(54px, 6vw, 88px);
+        font-weight: 500;
+        line-height: 1.05;
+        letter-spacing: -4px;
+      }
+      h1 span {
+        display: block;
+      }
+      .purple {
+        color: var(--purple);
+      }
+      p {
+        color: var(--muted);
+        line-height: 1.85;
+        font-size: 15px;
+        max-width: 400px;
+      }
+      .art {
+        position: relative;
+      }
+      object {
+        display: block;
+        width: 100%;
+        aspect-ratio: 1;
+        border: 0;
+      }
+      .caption {
+        text-align: center;
+        margin-top: 4px;
+      }
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 18px;
+        margin-top: 28px;
+      }
+      button {
+        cursor: pointer;
+        border: 1px solid #d1afff80;
+        background: var(--purple);
+        color: #170b25;
+        padding: 12px 18px;
+        border-radius: 7px;
+        font-weight: 600;
+        font-size: 13px;
+      }
+      button:hover {
+        background: #c69aff;
+      }
+      a {
+        color: var(--pale);
+        font-size: 13px;
+        text-underline-offset: 5px;
+      }
+      :focus-visible {
+        outline: 2px solid var(--pale);
+        outline-offset: 5px;
+      }
+      .scale-section {
+        padding-block: 36px 54px;
+        border-top: 1px solid #b78aff22;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+      }
+      h2 {
+        font-size: 26px;
+        font-weight: 500;
+        letter-spacing: -0.7px;
+        margin: 10px 0;
+      }
+      .scale-examples {
+        display: flex;
+        align-items: center;
+        gap: 32px;
+      }
+      figure {
+        margin: 0;
+        text-align: center;
+      }
+      .size-128 {
+        width: 128px;
+      }
+      .size-64 {
+        width: 64px;
+      }
+      figcaption {
+        color: var(--muted);
+        font: 10px monospace;
+        letter-spacing: 1px;
+        margin-top: 10px;
+      }
+      footer {
+        padding-block: 20px 30px;
+        border-top: 1px solid #b78aff22;
+      }
+      #replay-status {
+        min-height: 1.8em;
+      }
+      @media (max-width: 700px) {
+        .shell {
+          width: calc(100% - 40px);
+        }
+        header > .label {
+          max-width: 135px;
+          text-align: right;
+        }
+        .hero {
+          grid-template-columns: 1fr;
+          padding-block: 48px;
+          gap: 16px;
+        }
+        h1 {
+          font-size: clamp(46px, 12vw, 76px);
+          letter-spacing: -2.5px;
+        }
+        .art {
+          width: min(100%, 430px);
+          margin-inline: auto;
+        }
+        .scale-section {
+          grid-template-columns: 1fr;
+          gap: 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="shell">
+      <div class="brand">
+        <span class="brand-mark">s.</span> sanhith<span class="purple">.</span>
+      </div>
+      <span class="label">CONCEPT 01 / MIDNIGHT CODER</span>
+    </header>
+    <main class="shell">
+      <section class="hero" aria-label="Homepage-scale concept">
+        <div>
+          <span class="label">A LITTLE CURIOSITY. A LOT OF LATE NIGHTS.</span>
+          <h1>
+            <span>Curiosity.</span><span>Code.</span
+            ><span class="purple">Possibility.</span>
+          </h1>
+          <p>
+            A familiar face behind the things I build.<br />Lavender lines, a
+            quiet expression, and one violet spark.
+          </p>
+          <div class="actions">
+            <button id="replay" type="button">Replay eye flare ↻</button>
+            <a href="midnight-coder.svg" download="midnight-coder.svg"
+              >Download SVG</a
+            >
+          </div>
+          <p class="label" id="replay-status" role="status">
+            HOVER OVER THE CODER TO SAY HELLO.
+          </p>
+        </div>
+        <div class="art">
+          <object
+            data="midnight-coder.svg"
+            type="image/svg+xml"
+            aria-label="Animated Midnight Coder at homepage scale"
+          >
+            <img
+              src="midnight-coder.svg"
+              alt="A curly-haired coder with one glowing violet eye at a laptop"
+            />
+          </object>
+          <div class="label caption">FIG. 001 / THE PERSON BEHIND THE CODE</div>
+        </div>
+      </section>
+      <section class="scale-section" aria-labelledby="scale-title">
+        <div>
+          <span class="label">THE SMALL DETAILS</span>
+          <h2 id="scale-title">Same character. Smaller canvas.</h2>
+          <p>
+            A violet flare plays once, then the character draws into view and
+            stays. Replay the entrance whenever you want another look.
+          </p>
+        </div>
+        <div class="scale-examples">
+          <figure>
+            <object
+              class="size-128"
+              data="midnight-coder.svg"
+              type="image/svg+xml"
+              aria-label="Midnight Coder at 128 pixels"
+            ></object>
+            <figcaption>128 PX</figcaption>
+          </figure>
+          <figure>
+            <object
+              class="size-64"
+              data="midnight-coder.svg"
+              type="image/svg+xml"
+              aria-label="Midnight Coder at 64 pixels"
+            ></object>
+            <figcaption>64 PX</figcaption>
+          </figure>
+        </div>
+      </section>
+    </main>
+    <footer class="shell label">
+      ORIGINAL VECTOR CONCEPT / BLACK & PURPLE / REDUCED MOTION SUPPORTED
+    </footer>
+    <script>
+      // Embedded SVG documents get their own browser canvas background.
+      // Match the preview while keeping the downloadable SVG transparent.
+      document.querySelectorAll("object").forEach((artwork) => {
+        const blendBackdrop = () => {
+          const svg = artwork.contentDocument?.documentElement;
+          if (svg) {
+            svg.style.backgroundColor = getComputedStyle(
+              document.body,
+            ).backgroundColor;
+          }
+        };
+        artwork.addEventListener("load", blendBackdrop);
+        blendBackdrop();
+      });
+
+      const replayButton = document.querySelector("#replay");
+      const status = document.querySelector("#replay-status");
+      let replayCount = 0;
+
+      replayButton.addEventListener("click", () => {
+        replayCount += 1;
+        document.querySelectorAll("object").forEach((artwork) => {
+          artwork.data = `midnight-coder.svg?replay=${replayCount}`;
+        });
+        status.textContent = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        ).matches
+          ? "REDUCED MOTION / SHOWING THE COMPLETE DRAWING."
+          : "ENTRANCE REPLAYED / FLARE FIRST, THEN THE CHARACTER APPEARS.";
+      });
+    </script>
+  </body>
+</html>

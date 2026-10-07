@@ -1,0 +1,13 @@
+.artwork[data-ready="false"] {
+  visibility: hidden;
+}
+
+.artwork[data-ready="false"] svg * {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .artwork[data-ready="false"] {
+    visibility: visible;
+  }
+}

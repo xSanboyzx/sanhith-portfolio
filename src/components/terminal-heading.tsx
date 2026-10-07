@@ -6,8 +6,10 @@ const homeLines = ["Curiosity.", "Code.", "Possibility."];
 
 export function TerminalHeading({
   lines = homeLines,
+  onTypingComplete,
 }: {
   lines?: readonly string[];
+  onTypingComplete?: () => void;
 }) {
   const [frame, setFrame] = useState({ count: 0, caretOn: true });
 
@@ -32,6 +34,7 @@ export function TerminalHeading({
     let cancelled = false;
     let request = 0;
     let started: number | undefined;
+    let typingComplete = false;
 
     function tick(now: number) {
       if (cancelled) return;
@@ -52,6 +55,10 @@ export function TerminalHeading({
           ? previous
           : { count, caretOn },
       );
+      if (!typingComplete && count === characters.length) {
+        typingComplete = true;
+        onTypingComplete?.();
+      }
       if (!motion.matches && elapsed < animationEnd)
         request = requestAnimationFrame(tick);
     }
@@ -73,7 +80,7 @@ export function TerminalHeading({
       cancelAnimationFrame(request);
       motion.removeEventListener("change", updateMotion);
     };
-  }, [lines]);
+  }, [lines, onTypingComplete]);
 
   return (
     <h1 className="terminal-heading" aria-label={lines.join(" ")}>
