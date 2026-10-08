@@ -1,9 +1,16 @@
 import { TerminalHeading } from "@/components/terminal-heading";
-import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/site-metadata";
 import Link from "next/link";
 import { Arrow, SectionLabel } from "@/components/design";
 import { SelectedProjects } from "@/components/portfolio-work";
-export const metadata: Metadata = { title: "Projects" };
+
+export const metadata = createPageMetadata({
+  title: "Projects | Sanhith Amarathunge",
+  description:
+    "Explore Sanhith Amarathunge's software and machine learning projects, from a wellness companion to an applied ML pipeline.",
+  path: "/projects",
+});
+
 export default function Projects() {
   return (
     <div className="shell inner-page">

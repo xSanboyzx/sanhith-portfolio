@@ -20,11 +20,20 @@ No environment variables are needed initially. For future configuration, copy `.
 | `npm run dev` | Next.js development server |
 | `npm run check` | ESLint and TypeScript checks |
 | `npm run build` | Production Next.js build |
+| `npm run assets:branding` | Regenerate the favicon, Apple icon, and social preview |
 | `npm run start` | Run the Next.js build in Node.js |
 | `npm run build:worker` | Build Next.js and adapt it for Workers |
 | `npm run preview` | Build and preview in the local Workers runtime |
 | `npm run deploy` | Build and deploy to your Cloudflare account |
 | `npm run cf-typegen` | Generate types after changing Worker bindings |
+
+## Branding assets
+
+The favicon and Apple icon use Next.js file conventions in `src/app/`. All four routes share the static `public/branding/social-preview.png` with route-specific metadata in `src/lib/site-metadata.ts`.
+
+Edit `scripts/generate-brand-assets.mjs` to change the card's wording, layout, stars, or icon. Run `npm run assets:branding` and commit the regenerated assets. The script uses the local licensed fonts in `src/app/fonts/` and the editable Midnight Coder illustration in `public/concepts/midnight-coder.svg`. It freezes the character's animation and updates its laptop to the current Orbitron lettering. The exported `public/branding/social-preview.svg` remains editable vector artwork, with outlined text for font-independent rendering.
+
+Generation tools are development dependencies only. The site serves the finished assets locally; neither fonts nor images are generated or fetched externally when a link is shared.
 
 ## Cloudflare and GitHub
 

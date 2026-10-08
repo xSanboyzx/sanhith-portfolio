@@ -3,12 +3,23 @@ import { LanguageRibbon } from "@/components/language-ribbon";
 import { HomeHero } from "@/components/home-hero";
 import { Arrow, SectionLabel } from "@/components/design";
 import { MidnightCoder } from "@/components/midnight-coder";
+import {
+  createPageMetadata,
+  homeDescription,
+  homeTitle,
+} from "@/lib/site-metadata";
 
 import {
   EducationAndSkills,
   Experience,
   SelectedProjects,
 } from "@/components/portfolio-work";
+
+export const metadata = createPageMetadata({
+  title: homeTitle,
+  description: homeDescription,
+  path: "/",
+});
 
 export default function Home() {
   return (

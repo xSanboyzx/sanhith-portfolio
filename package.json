@@ -8,6 +8,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "assets:branding": "node scripts/generate-brand-assets.mjs",
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "next typegen && tsc --noEmit",
@@ -30,8 +31,12 @@
     "@types/react-dom": "^19",
     "eslint": "^9.39.5",
     "eslint-config-next": "16.3.6",
+    "fontkit": "^2.0.4",
+    "postcss": "^8.5.29",
+    "sharp": "^0.35.5",
     "tailwindcss": "^4.3.3",
     "typescript": "^5",
+    "wawoff2": "^2.0.1",
     "wrangler": "4.136.3"
   }
 }

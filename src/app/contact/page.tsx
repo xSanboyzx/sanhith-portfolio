@@ -1,8 +1,15 @@
 import { TerminalHeading } from "@/components/terminal-heading";
-import type { Metadata } from "next";
+import { createPageMetadata } from "@/lib/site-metadata";
 import Link from "next/link";
 import { Arrow, SectionLabel } from "@/components/design";
-export const metadata: Metadata = { title: "Contact" };
+
+export const metadata = createPageMetadata({
+  title: "Contact | Sanhith Amarathunge",
+  description:
+    "Get in touch with Sanhith Amarathunge about software, data, collaborations, and opportunities.",
+  path: "/contact",
+});
+
 export default function Contact() {
   return (
     <div className="shell inner-page">
