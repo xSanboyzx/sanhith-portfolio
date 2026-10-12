@@ -102,6 +102,9 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
   }, [menuOpen]);
 
   function scrollToTop() {
+    if (window.location.hash !== "#main") {
+      window.history.pushState(null, "", "#main");
+    }
     window.scrollTo({
       top: 0,
       behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches

@@ -527,13 +527,15 @@ h3 {
   animation: ticker 55s linear infinite;
 }
 .ticker-group {
+  --ticker-gap: clamp(28px, 3vw, 64px);
   display: flex;
   flex: 0 0 auto;
   min-width: 100vw;
   align-items: center;
-  justify-content: space-between;
-  gap: clamp(28px, 3vw, 64px);
-  padding-right: clamp(28px, 3vw, 64px);
+  /* Half gaps at each edge combine into a full gap between repeated groups. */
+  justify-content: space-around;
+  gap: var(--ticker-gap);
+  padding-inline: calc(var(--ticker-gap) / 2);
 }
 .ticker-item {
   display: inline-flex;
@@ -1057,17 +1059,17 @@ h2 {
   padding-block: 38px;
   border-bottom: 1px solid var(--line);
 }
-.impact-strip > div {
+.impact-strip > .impact-link {
   display: flex;
   align-items: center;
   gap: 20px;
   padding-inline: 28px;
   border-right: 1px solid var(--line);
 }
-.impact-strip > div:first-child {
+.impact-strip > .impact-link:first-child {
   padding-left: 0;
 }
-.impact-strip > div:last-child {
+.impact-strip > .impact-link:last-child {
   border: 0;
 }
 .impact-strip strong {
@@ -1120,23 +1122,24 @@ h2 {
 .company-logo {
   display: flex;
   align-items: center;
+  justify-content: center;
   width: 212px;
   height: 66px;
   margin-bottom: 22px;
+  background: linear-gradient(135deg, #1b1424, #100d17);
+  border: 1px solid #b78aff26;
+  padding: 12px 16px;
+  border-radius: 12px;
 }
 .company-logo img {
-  width: 180px;
-  height: 42px;
+  width: 100%;
+  height: auto;
+  max-height: 100%;
   object-fit: contain;
-  object-position: left center;
+  object-position: center;
 }
-.company-logo-scotiabank {
-  background: #fff;
-  padding-inline: 16px;
-  border-radius: 8px;
-}
-.company-logo-gdg img {
-  width: 210px;
+.company-logo-gdg {
+  padding-inline: 10px;
 }
 .experience-date {
   color: #c3aecf;
@@ -1225,55 +1228,6 @@ h2 {
   border: 1px solid #c89aff;
   opacity: 0;
 }
-.experience-bullet::after {
-  content: "";
-  position: absolute;
-  inset: 12px 0 auto 16px;
-  height: 2px;
-  background: linear-gradient(90deg, #a773ef00, #b78aff90 65%, #ead7ff);
-  box-shadow: 0 0 10px #b78aff65;
-  transform-origin: left;
-  opacity: 0;
-  pointer-events: none;
-}
-@media (prefers-reduced-motion: no-preference) {
-  /* Observe each bullet separately so long mobile entries reveal as you scroll. */
-  .experience-bullet.reveal-ready {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
-  .experience-bullet.reveal-ready .experience-bullet-text,
-  .experience-bullet.reveal-ready .experience-bullet-marker {
-    opacity: 0;
-  }
-  .experience-bullet.reveal-ready.is-visible .experience-bullet-text {
-    animation: bullet-arrive 650ms cubic-bezier(0.16, 1, 0.3, 1) both;
-    animation-delay: calc(var(--bullet-delay) + 180ms);
-  }
-  .experience-bullet.reveal-ready.is-visible .experience-bullet-marker {
-    animation: bullet-lock 550ms ease-out both;
-    animation-delay: var(--bullet-delay);
-  }
-  .experience-bullet.reveal-ready.is-visible .experience-bullet-marker::after {
-    animation: bullet-impact 650ms ease-out both;
-    animation-delay: calc(var(--bullet-delay) + 120ms);
-  }
-  .experience-bullet.reveal-ready.is-visible::after {
-    animation: bullet-shot 650ms cubic-bezier(0.2, 0.6, 0.3, 1) both;
-    animation-delay: var(--bullet-delay);
-  }
-}
-@keyframes bullet-arrive {
-  from {
-    opacity: 0;
-    transform: translateX(-18px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
 @keyframes bullet-lock {
   0% {
     opacity: 0;
@@ -1300,23 +1254,6 @@ h2 {
     transform: scale(2);
   }
 }
-@keyframes bullet-shot {
-  0% {
-    opacity: 0;
-    transform: scaleX(0);
-  }
-  20% {
-    opacity: 0.85;
-  }
-  65% {
-    opacity: 0.4;
-    transform: scaleX(1);
-  }
-  100% {
-    opacity: 0;
-    transform: scaleX(1);
-  }
-}
 .work-tags {
   display: flex;
   flex-wrap: wrap;
@@ -1332,34 +1269,6 @@ h2 {
   border: 1px solid #b78aff25;
   border-radius: 5px;
   background: #b78aff08;
-}
-.earlier-experience {
-  border-block: 1px solid var(--line);
-  margin-top: 10px;
-}
-.earlier-experience summary {
-  cursor: pointer;
-  padding-block: 22px;
-  color: #cbbdd6;
-  font-size: 14px;
-}
-.earlier-experience summary span {
-  color: var(--muted);
-  margin-left: 20px;
-  font-size: 12px;
-}
-.earlier-experience > div {
-  max-width: 780px;
-  padding: 0 0 24px 18px;
-}
-.earlier-experience h3 {
-  font-size: 18px;
-}
-.earlier-experience p {
-  margin-top: 10px;
-  font-size: 14px;
-  color: var(--muted);
-  line-height: 1.85;
 }
 .work-experience + .section {
   padding-top: 20px;
@@ -1602,31 +1511,208 @@ h2 {
   line-height: 1.8;
   margin-block: 10px 18px;
 }
-.skills-groups > div {
-  padding-block: 22px;
-  border-bottom: 1px solid var(--line);
-}
-.skills-groups > div:first-child {
-  padding-top: 0;
-}
-.skills-groups h3 {
-  font-size: 18px;
-  color: #d4bbeb;
-}
-.skills-groups p {
-  font-size: 14px;
-  color: var(--muted);
-  line-height: 1.9;
-  margin-top: 9px;
-}
 .home-contact-copy {
   color: var(--muted);
   font-size: 15px;
   line-height: 1.8;
   max-width: 490px;
 }
+html:has([data-homepage-tracker]) {
+  scroll-padding-top: calc(
+    var(--homepage-header-height, 96px) +
+    var(--homepage-tracker-height, 65px) + 20px
+  );
+}
+.impact-link {
+  min-height: 44px;
+  height: 100%;
+  border-radius: 6px;
+}
+.impact-link:hover strong {
+  color: #e4cfff;
+  text-shadow: 0 0 18px #b78aff35;
+}
+.exploration-section-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.exploration-section-actions .text-link {
+  min-height: 44px;
+}
+.hero .text-link,
+.hero .scroll-cue,
+#contact .text-link {
+  min-height: 44px;
+}
+.dossier-expand-all {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 44px;
+  padding: 10px 14px;
+  border: 1px solid #b78aff35;
+  border-radius: 6px;
+  background: #b78aff08;
+  color: #dcc8ff;
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+.dossier-expand-all[hidden] {
+  display: none;
+}
+.dossier-expand-all:hover {
+  border-color: #b78aff80;
+  background: #b78aff12;
+}
+.dossier-file-label,
+.experience-era {
+  display: block;
+  margin-bottom: 10px;
+  color: #a896b7;
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-size: 9px;
+  line-height: 1.6;
+  letter-spacing: 1.5px;
+}
+.company-wordmark {
+  color: #dcc8ff;
+  font-size: 15px;
+  font-weight: 600;
+  text-align: center;
+}
+.experience-summary {
+  margin-block: 18px 20px;
+}
+.experience-entry-earlier .experience-body h3 {
+  font-size: clamp(20px, 2vw, 25px);
+}
+.dossier {
+  position: relative;
+  margin-top: 22px;
+  border-top: 1px solid #b78aff2b;
+  transition: border-color 180ms ease;
+}
+.dossier[data-expanded="true"] {
+  border-color: #b78aff66;
+}
+.dossier::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, #b78aff00, #b78aff80, #dcc8ff);
+  box-shadow: 0 0 8px #b78aff60;
+  opacity: 0;
+  pointer-events: none;
+  transform-origin: left;
+}
+.dossier > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 52px;
+  padding-block: 14px;
+  color: #cba5f7;
+  font-size: 13px;
+  cursor: pointer;
+  list-style: none;
+}
+.dossier > summary::-webkit-details-marker {
+  display: none;
+}
+.dossier > summary:hover {
+  color: #dcc8ff;
+}
+.dossier-close-label {
+  display: none;
+}
+.dossier[data-expanded="true"] > summary .dossier-open-label,
+.dossier:not([data-enhanced])[open] > summary .dossier-open-label {
+  display: none;
+}
+.dossier[data-expanded="true"] > summary .dossier-close-label,
+.dossier:not([data-enhanced])[open] > summary .dossier-close-label {
+  display: inline;
+}
+.dossier-toggle-icon {
+  position: relative;
+  flex: 0 0 16px;
+  width: 16px;
+  height: 16px;
+}
+.dossier-toggle-icon::before,
+.dossier-toggle-icon::after {
+  content: "";
+  position: absolute;
+  inset: 7px 1px auto;
+  height: 1px;
+  background: currentColor;
+  transition: transform 180ms ease;
+}
+.dossier-toggle-icon::after {
+  transform: rotate(90deg);
+}
+.dossier[data-expanded="true"] .dossier-toggle-icon::after,
+.dossier:not([data-enhanced])[open] .dossier-toggle-icon::after {
+  transform: rotate(0);
+}
+.dossier-content {
+  display: flow-root;
+}
+.dossier-content .experience-bullets {
+  margin-block: 8px 16px;
+}
+.dossier-bullet .experience-bullet-text {
+  opacity: 1;
+}
+.dossier-bullet:first-child {
+  margin-top: 8px;
+}
+.impact-link:focus-visible,
+.dossier > summary:focus-visible,
+.dossier-expand-all:focus-visible,
+[id$="-heading"][tabindex="-1"]:focus-visible {
+  outline: 2px solid #b78aff;
+  outline-offset: 5px;
+  border-radius: 3px;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .dossier-flourish[data-expanded="true"]::before {
+    animation: dossier-border-sweep 350ms ease-out both;
+  }
+  .dossier-flourish[data-expanded="true"] .dossier-bullet .experience-bullet-marker {
+    animation: bullet-lock 280ms ease-out both;
+    animation-delay: var(--dossier-marker-delay, 0ms);
+  }
+  .dossier-flourish[data-expanded="true"] .dossier-bullet .experience-bullet-marker::after {
+    animation: bullet-impact 280ms ease-out both;
+    animation-delay: calc(var(--dossier-marker-delay, 0ms) + 40ms);
+  }
+}
+@keyframes dossier-border-sweep {
+  0% {
+    opacity: 0.9;
+    transform: scaleX(0);
+  }
+  70% {
+    opacity: 0.75;
+    transform: scaleX(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scaleX(1);
+  }
+}
 @media (max-width: 1000px) {
-  .impact-strip > div {
+  .impact-strip > .impact-link {
     padding-inline: 16px;
     gap: 12px;
     flex-direction: column;
@@ -1655,11 +1741,20 @@ h2 {
   }
 }
 @media (max-width: 700px) {
+  html:has([data-homepage-tracker]) {
+    scroll-padding-top: calc(
+      var(--homepage-header-height, 76px) +
+      var(--homepage-tracker-height, 59px) + 20px
+    );
+  }
+  .exploration-section-actions {
+    justify-content: flex-start;
+  }
   .impact-strip {
     grid-template-columns: 1fr;
     padding-block: 12px;
   }
-  .impact-strip > div {
+  .impact-strip > .impact-link {
     flex-direction: row;
     align-items: center;
     gap: 24px;
@@ -1678,10 +1773,6 @@ h2 {
   }
   .company-logo {
     margin-bottom: 14px;
-  }
-  .earlier-experience summary span {
-    display: block;
-    margin: 8px 0 0 18px;
   }
   .featured-projects {
     grid-template-columns: 1fr;

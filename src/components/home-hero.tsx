@@ -1,8 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import { useCallback, useState, type ReactNode } from "react";
 import { Arrow } from "./design";
+import { ExplorationLink } from "./homepage-exploration";
 import { TerminalHeading } from "./terminal-heading";
 import styles from "./home-hero.module.css";
 
@@ -23,21 +23,21 @@ export function HomeHero({ artwork }: { artwork: ReactNode }) {
           <br /> From enterprise analytics to apps built around people.
         </p>
         <div className="button-row hero-enter delay-3">
-          <Link className="button primary" href="#selected">
+          <ExplorationLink className="button primary" href="#selected">
             Explore my work <Arrow />
-          </Link>
-          <Link className="text-link" href="#experience">
+          </ExplorationLink>
+          <ExplorationLink className="text-link" href="#experience">
             My experience <Arrow />
-          </Link>
+          </ExplorationLink>
         </div>
       </div>
       <div className={`hero-art ${styles.artwork}`} data-ready={characterReady}>
         {artwork}
         <div className="art-coordinate">FIG. 001 — MIDNIGHT CODER</div>
       </div>
-      <a href="#selected" className="scroll-cue">
+      <ExplorationLink href="#selected" className="scroll-cue">
         <span className="scroll-line" /> SCROLL TO EXPLORE
-      </a>
+      </ExplorationLink>
       <span className="hero-index">
         INDEPENDENT MIND. ENDLESS POSSIBILITIES.
       </span>
