@@ -4,12 +4,7 @@ import "./globals.css";
 import { SiteShell } from "@/components/site-shell";
 import { StarField } from "@/components/star-field";
 import { ReticleCursor } from "@/components/reticle-cursor";
-import {
-  createPageMetadata,
-  homeDescription,
-  homeTitle,
-  siteUrl,
-} from "@/lib/site-metadata";
+import { homeDescription, homeTitle, siteUrl } from "@/lib/site-metadata";
 
 const spaceGrotesk = localFont({
   src: "./fonts/space-grotesk-latin.woff2",
@@ -25,12 +20,8 @@ const jetBrainsMono = localFont({
 });
 
 export const metadata: Metadata = {
-  ...createPageMetadata({
-    title: homeTitle,
-    description: homeDescription,
-    path: "/",
-  }),
   metadataBase: new URL(siteUrl),
+  description: homeDescription,
   title: {
     default: homeTitle,
     template: "%s | Sanhith Amarathunge",

@@ -1,6 +1,7 @@
 import Image from "next/image";
+import Link from "next/link";
 import type { CSSProperties } from "react";
-import { SectionLabel } from "@/components/design";
+import { Arrow, SectionLabel } from "@/components/design";
 import { Dossier, ExpandAllControl } from "@/components/homepage-exploration";
 import { SkillExplorer } from "@/components/skill-explorer";
 import {
@@ -41,11 +42,11 @@ function Tags({ items }: { items: readonly string[] }) {
   );
 }
 
-function TechLogo({ name, icon }: { name: string; icon: string }) {
+function TechLogo({ name, iconSrc }: { name: string; iconSrc: string }) {
   return (
     <span className="work-tech">
       <Image
-        src={`/icons/portfolio/${icon}.svg`}
+        src={iconSrc}
         width={20}
         height={20}
         alt=""
@@ -182,6 +183,170 @@ function ProjectArtwork({ artwork }: { artwork: ProjectRecord["artwork"] }) {
   );
 }
 
+function ProjectActions({
+  project,
+  isDossier,
+}: {
+  project: ProjectRecord;
+  isDossier: boolean;
+}) {
+  return (
+    <div className="project-actions">
+      <a
+        className="text-link project-source-link"
+        href={project.repositoryUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`View ${project.name} source on GitHub (opens in a new tab)`}
+      >
+        <Image
+          className="project-github-icon"
+          src="/icons/portfolio/github.svg"
+          width={18}
+          height={18}
+          alt=""
+          unoptimized
+        />
+        View source on GitHub <span aria-hidden="true">↗</span>
+      </a>
+      {isDossier ? (
+        <Link
+          className="text-link"
+          href={`/projects#${project.id}`}
+          aria-label={`Read the ${project.name} case study`}
+        >
+          Read case study <Arrow />
+        </Link>
+      ) : (
+        project.resources.map((resource) => (
+          <a
+            className="text-link"
+            href={resource.href}
+            key={resource.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`${project.name}: ${resource.label} (opens in a new tab)`}
+          >
+            {resource.label} <span aria-hidden="true">↗</span>
+          </a>
+        ))
+      )}
+    </div>
+  );
+}
+
+function ProjectOverview({
+  project,
+  index,
+  isDossier,
+}: {
+  project: ProjectRecord;
+  index: number;
+  isDossier: boolean;
+}) {
+  const Heading = isDossier ? "h3" : "h2";
+
+  return (
+    <div className="project-overview">
+      <ProjectArtwork artwork={project.artwork} />
+      <div className="featured-project-copy">
+        {isDossier && (
+          <span className="dossier-file-label" aria-hidden="true">
+            BUILD FILE / {String(index + 1).padStart(2, "0")}
+          </span>
+        )}
+        <div className="project-meta">
+          <span>{project.category}</span>
+          <span>{project.date}</span>
+        </div>
+        <Heading
+          className="featured-project-title"
+          id={`${project.id}-heading`}
+          tabIndex={-1}
+        >
+          {project.title}
+          <span className="purple">{project.titleAccent}</span>
+        </Heading>
+        <p className="project-subtitle">{project.subtitle}</p>
+        <p className="work-description">{project.description}</p>
+        <p className="project-role">
+          <span>My role: </span>
+          {project.role}
+        </p>
+        <div className="project-context">
+          <span>{project.team}</span>
+          <span>{project.status}</span>
+        </div>
+        <div className="project-tech-row">
+          {project.tools.map((tool) =>
+            tool.iconSrc ? (
+              <TechLogo
+                name={tool.name}
+                iconSrc={tool.iconSrc}
+                key={tool.name}
+              />
+            ) : (
+              <span className="work-tech" key={tool.name}>
+                {tool.name}
+              </span>
+            ),
+          )}
+        </div>
+        <ProjectActions project={project} isDossier={isDossier} />
+        {isDossier && (
+          <Dossier
+            id={project.id}
+            group="projects"
+            openLabel="Explore this build"
+            closeLabel="Close build details"
+          >
+            <DossierBullets items={project.highlights} />
+          </Dossier>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function ProjectCaseStudy({ project }: { project: ProjectRecord }) {
+  return (
+    <div className="project-case-study-content">
+      <section
+        className="project-case-study-section project-case-study-problem"
+        aria-labelledby={`${project.id}-problem`}
+      >
+        <h3 id={`${project.id}-problem`}>The problem</h3>
+        <p>{project.caseStudy.problem}</p>
+      </section>
+      <section
+        className="project-case-study-section"
+        aria-labelledby={`${project.id}-approach`}
+      >
+        <h3 id={`${project.id}-approach`}>How it works</h3>
+        <ul>
+          {project.caseStudy.approach.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
+      </section>
+      <section
+        className="project-case-study-section"
+        aria-labelledby={`${project.id}-contribution`}
+      >
+        <h3 id={`${project.id}-contribution`}>My contribution</h3>
+        <ul>
+          {project.caseStudy.contributions.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
+      </section>
+      {project.caseStudy.note && (
+        <p className="project-case-study-note">{project.caseStudy.note}</p>
+      )}
+    </div>
+  );
+}
+
 export function SelectedProjects({
   presentation = "standard",
 }: {
@@ -190,66 +355,21 @@ export function SelectedProjects({
   const isDossier = presentation === "dossier";
 
   return (
-    <div className="featured-projects">
+    <div className={`featured-projects${isDossier ? "" : " project-case-studies"}`}>
       {projects.map((project, index) => (
         <article
-          className="featured-project reveal"
-          id={isDossier ? project.id : undefined}
+          className={`featured-project reveal${isDossier ? "" : " project-case-study"}`}
+          id={project.id}
+          aria-labelledby={`${project.id}-heading`}
+          tabIndex={isDossier ? undefined : -1}
           key={project.id}
         >
-          <ProjectArtwork artwork={project.artwork} />
-          <div className="featured-project-copy">
-            {isDossier && (
-              <span className="dossier-file-label" aria-hidden="true">
-                BUILD FILE / {String(index + 1).padStart(2, "0")}
-              </span>
-            )}
-            <div className="project-meta">
-              <span>{project.category}</span>
-              <span>{project.date}</span>
-            </div>
-            <h3
-              id={isDossier ? `${project.id}-heading` : undefined}
-              tabIndex={isDossier ? -1 : undefined}
-            >
-              {project.title}
-              <span className="purple">{project.titleAccent}</span>
-            </h3>
-            <p className="project-subtitle">{project.subtitle}</p>
-            <p className="work-description">{project.description}</p>
-            <div className="project-tech-row">
-              {project.tools.map((tool) =>
-                tool.icon ? (
-                  <TechLogo name={tool.name} icon={tool.icon} key={tool.name} />
-                ) : (
-                  <span className="work-tech" key={tool.name}>
-                    {tool.name}
-                  </span>
-                ),
-              )}
-            </div>
-            {isDossier ? (
-              <Dossier
-                id={project.id}
-                group="projects"
-                openLabel="Explore this build"
-                closeLabel="Close build details"
-              >
-                <DossierBullets items={project.highlights} />
-              </Dossier>
-            ) : (
-              <details className="project-details">
-                <summary>
-                  Explore the engineering <span aria-hidden="true">+</span>
-                </summary>
-                <ul className="work-bullets">
-                  {project.highlights.map((highlight) => (
-                    <li key={highlight}>{highlight}</li>
-                  ))}
-                </ul>
-              </details>
-            )}
-          </div>
+          <ProjectOverview
+            project={project}
+            index={index}
+            isDossier={isDossier}
+          />
+          {!isDossier && <ProjectCaseStudy project={project} />}
         </article>
       ))}
     </div>

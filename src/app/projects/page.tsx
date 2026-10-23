@@ -18,14 +18,14 @@ export default function Projects() {
       <div className="page-heading">
         <TerminalHeading lines={["From a small idea.", "To something real."]} />
         <p>
-          A growing collection of things made with intention.
+          Two academic builds, from a wellness app to a machine learning pipeline.
           <br />
-          The work starts here.
+          The problems, the engineering, and the work I contributed.
         </p>
       </div>
       <div className="collection-bar">
         <span>
-          <span className="status-dot" /> THE COLLECTION
+          <span className="status-dot" /> TWO PROJECTS / TWO CASE STUDIES
         </span>
         <span>MOBILE DEVELOPMENT / APPLIED ML</span>
       </div>
@@ -37,13 +37,12 @@ export default function Projects() {
         <div>
           <h2>From curiosity to implementation.</h2>
           <p>
-            My work brings together thoughtful interfaces, cloud-backed apps,
-            and practical machine learning. Explore the engineering details
-            above for the decisions and tools behind each build.
+            Explore the repositories for code, setup instructions, and the
+            implementation behind each case study.
           </p>
         </div>
-        <Link href="/about" className="text-link">
-          More about me <Arrow />
+        <Link href="/contact" className="text-link">
+          Talk about a project <Arrow />
         </Link>
       </div>
     </div>

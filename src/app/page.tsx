@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { contactDetails } from "@/lib/contact-details";
 import { LanguageRibbon } from "@/components/language-ribbon";
 import { HomeHero } from "@/components/home-hero";
 import { Arrow, SectionLabel } from "@/components/design";
@@ -98,13 +99,13 @@ export default function Home() {
           <div className="button-row">
             <a
               className="button primary"
-              href="mailto:sanhith.amarathunge@gmail.com"
+              href={contactDetails.emailHref}
             >
               Get in touch <Arrow />
             </a>
             <a
               className="text-link"
-              href="https://www.linkedin.com/in/sanhith-amarathunge"
+              href={contactDetails.linkedInHref}
               target="_blank"
               rel="noopener noreferrer"
             >

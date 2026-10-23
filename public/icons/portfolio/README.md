@@ -9,5 +9,10 @@ Organization logos identify experience and do not imply endorsement. Original br
 - `firebase.svg`: https://raw.githubusercontent.com/devicons/devicon/v2.17.0/icons/firebase/firebase-original.svg
 - `pytorch.svg`: https://raw.githubusercontent.com/devicons/devicon/v2.17.0/icons/pytorch/pytorch-original.svg
 - `streamlit.svg`: https://raw.githubusercontent.com/devicons/devicon/v2.17.0/icons/streamlit/streamlit-original.svg
+- `github.svg`: https://raw.githubusercontent.com/devicons/devicon/v2.17.0/icons/github/github-original.svg
+- `scikitlearn.svg`: https://raw.githubusercontent.com/devicons/devicon/v2.17.0/icons/scikitlearn/scikitlearn-original.svg
+
+Project technology rows also reuse `../languages/python.svg` and `../languages/dart.svg`; see the sources in `../languages/README.md`.
+The GitHub mark is displayed in white using a CSS filter for contrast on dark backgrounds. Technology icons retain their original colors.
 
 Technology icons: Devicon v2.17.0, MIT license; see `../languages/DEVICON-LICENSE.txt`.
