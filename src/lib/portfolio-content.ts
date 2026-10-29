@@ -44,37 +44,50 @@ export type SkillCategory = {
   examples: readonly { id: string; label: string }[];
 };
 
+export const education = {
+  university: "Ontario Tech University",
+  degree: "Bachelor of Science in Computer Science (Co-op)",
+  specialization: "Data Science",
+  expectedGraduation: "October 2027",
+  graduationYear: 2027,
+  dateRange: "Sep 2022–Oct 2027",
+  location: "Oshawa, ON",
+} as const;
+
 export const experience: readonly ExperienceRecord[] = [
   {
     id: "experience-scotiabank",
     company: "Scotiabank",
     logo: "scotiabank",
     role: "Data Strategy & Analytics Intern",
-    date: "Jan — Aug 2026",
+    date: "Jan–Aug 2026",
     location: "Toronto, ON",
     focus: "DATA INTO DECISIONS",
     description:
       "Built the workflows and reporting that turned operational data into actionable insights for business teams.",
     highlights: [
-      "Developed Python, SQL, and Google Cloud ingestion and transformation workflows to process and validate operational datasets.",
-      "Designed Power BI dashboards and executive views for KPIs and operational trends; automated recurring analysis and reporting.",
-      "Integrated the Genesys API for contact-centre analytics, resolving authentication and data-quality issues with cross-functional stakeholders.",
+      "Developed ingestion and transformation workflows with Python, SQL, and Google Cloud Platform to process, validate, and analyze large operational datasets.",
+      "Designed interactive Power BI dashboards and executive views for KPIs, operational trends, and actionable business insights.",
+      "Integrated the Genesys API for contact-centre analytics, troubleshooting authentication and data-quality issues.",
+      "Automated recurring data processing and reporting with Python, improving workflow consistency and reducing manual analysis.",
+      "Worked with managers and cross-functional stakeholders to gather requirements, resolve technical blockers, and apply data governance and development best practices.",
     ],
-    tools: ["Python", "SQL", "Google Cloud", "Power BI", "Genesys API"],
+    tools: ["Python", "SQL", "Google Cloud Platform", "Power BI", "Genesys API"],
   },
   {
     id: "experience-gdg",
     company: "Google Developer Group · Ontario Tech",
     logo: "gdg",
     role: "Technical Director",
-    date: "Feb — Dec 2025",
+    date: "Feb–Dec 2025",
     location: "Oshawa, ON · Campus community",
     focus: "50+ STUDENTS ENGAGED",
     description:
       "Helped students turn technical curiosity into working projects through workshops, mentorship, and practical roadmaps.",
     highlights: [
       "Hosted React, Firebase, and full-stack development workshops engaging more than 50 students.",
-      "Mentored hands-on projects and led AI, resume, and portfolio workshops to strengthen technical skills and professional readiness.",
+      "Mentored students through hands-on projects and semester roadmap planning to support stronger project outcomes.",
+      "Organized and led AI, résumé, and portfolio workshops alongside tech events to strengthen professional readiness and technical literacy.",
     ],
     tools: ["React", "Firebase", "Full-stack development", "Mentorship"],
   },
@@ -83,14 +96,16 @@ export const experience: readonly ExperienceRecord[] = [
     company: "Kochasoft Inc.",
     logo: "kochasoft",
     role: "Project Manager Intern",
-    date: "Apr — Dec 2024",
+    date: "Apr–Dec 2024",
     location: "Toronto, ON",
     focus: "25% LESS DOWNTIME",
     description:
       "Connected engineering execution with client priorities across large-scale infrastructure transitions.",
     highlights: [
       "Directed server transition plans across WebSphere, VMware, Windows, and AWS environments, reducing downtime by 25%.",
-      "Managed sprints in Azure DevOps and Jira; aligned developers and architects with client requirements and met 100% of SOW timelines and quality standards.",
+      "Managed sprints through Azure DevOps and Jira Kanban boards, improving delivery efficiency and task visibility across teams.",
+      "Presented executive project updates supported by flowcharts, wireframes, and use-case documentation to streamline stakeholder communication.",
+      "Partnered with developers and system architects to align deliverables with client requirements, meeting 100% of SOW timelines and quality standards.",
     ],
     tools: ["AWS", "VMware", "Azure DevOps", "Jira", "WebSphere"],
   },
@@ -99,16 +114,22 @@ export const experience: readonly ExperienceRecord[] = [
     company: "Sanka Law Corporation",
     logo: null,
     role: "Part-Time Legal Administrative Assistant",
-    date: "Sep 2020 — Jun 2022",
+    date: "Sep 2020–Jun 2022",
     location: "Scarborough, ON",
     focus: "20% MORE EFFICIENT ADMINISTRATION",
     description:
       "Supported legal administration through case-file management, client communication, and scheduling.",
     highlights: [
-      "Managed legal case files, compliance documentation, and client communications.",
-      "Improved administrative response time and office efficiency by 20% through scheduling and coordination.",
+      "Maintained legal case files, processed client accounts, and kept compliance documentation aligned with provincial standards.",
+      "Used Microsoft Office to draft legal documents, track case timelines, and prepare correspondence for attorneys and clients.",
+      "Coordinated client communications and appointment scheduling, improving administrative response time and office efficiency by 20%.",
     ],
-    tools: ["Case files", "Compliance documentation", "Client communication"],
+    tools: [
+      "Case files",
+      "Compliance documentation",
+      "Client communication",
+      "Microsoft Office",
+    ],
     earlier: true,
   },
 ];
@@ -267,7 +288,7 @@ export const skillCategories: readonly SkillCategory[] = [
   {
     id: "delivery",
     label: "Delivery",
-    tools: ["Git", "Java", "C++", "C", "Go", "Jira", "Azure DevOps", "Maven"],
+    tools: ["Git", "Jira", "Azure DevOps", "Maven", "VS Code", "Visual Studio"],
     examples: [
       { id: "experience-kochasoft", label: "Kochasoft" },
       { id: "experience-gdg", label: "GDG" },

@@ -5,6 +5,7 @@ import { Arrow, SectionLabel } from "@/components/design";
 import { Dossier, ExpandAllControl } from "@/components/homepage-exploration";
 import { SkillExplorer } from "@/components/skill-explorer";
 import {
+  education,
   experience,
   projects,
   skillCategories,
@@ -391,17 +392,19 @@ export function EducationAndSkills() {
           <span className="muted">Always learning.</span>
         </h2>
         <div className="education-card" id="education">
-          <span className="work-highlight">EXPECTED JUNE 2027</span>
+          <span className="work-highlight">
+            EXPECTED {education.expectedGraduation.toUpperCase()}
+          </span>
           <h3 id="education-heading" tabIndex={-1}>
-            Ontario Tech University
+            {education.university}
           </h3>
           <p>
-            Bachelor of Science (Co-Op)
+            {education.degree}
             <br />
-            Computer Science
+            {education.specialization} specialization
           </p>
           <span className="experience-date">
-            Sep 2022 — Jun 2027 · Oshawa, ON
+            {education.dateRange} · {education.location}
           </span>
         </div>
       </div>

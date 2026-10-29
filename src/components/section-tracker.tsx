@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { getNavigationClearance, getStickyHeight } from "@/lib/navigation";
 import { ExplorationLink } from "./homepage-exploration";
 import styles from "./section-tracker.module.css";
 
@@ -31,10 +32,7 @@ export function SectionTracker() {
     const updateActiveSection = () => {
       frame = 0;
 
-      const headerHeight = document
-        .querySelector(".site-header")
-        ?.getBoundingClientRect().height ?? 96;
-      const clearance = headerHeight + tracker.getBoundingClientRect().height + 24;
+      const clearance = getNavigationClearance();
       let nextSection: SectionId = "experience";
 
       for (const section of sections) {
@@ -67,7 +65,7 @@ export function SectionTracker() {
     };
 
     const measureTracker = () => {
-      const height = `${Math.ceil(tracker.getBoundingClientRect().height)}px`;
+      const height = `${Math.ceil(getStickyHeight(tracker))}px`;
 
       if (root.style.getPropertyValue(property) !== height) {
         root.style.setProperty(property, height);
@@ -103,20 +101,25 @@ export function SectionTracker() {
     <nav
       ref={trackerRef}
       className={styles.tracker}
-      aria-label="Homepage sections"
+      aria-labelledby="homepage-sections-label"
       data-homepage-tracker
     >
-      <div className={styles.links}>
-        {sections.map((section) => (
-          <ExplorationLink
-            key={section.id}
-            href={`#${section.id}`}
-            className={styles.link}
-            aria-current={activeSection === section.id ? "location" : undefined}
-          >
-            {section.label}
-          </ExplorationLink>
-        ))}
+      <div className={styles.inner}>
+        <span className={styles.label} id="homepage-sections-label">
+          On this page
+        </span>
+        <div className={styles.links}>
+          {sections.map((section) => (
+            <ExplorationLink
+              key={section.id}
+              href={`#${section.id}`}
+              className={styles.link}
+              aria-current={activeSection === section.id ? "location" : undefined}
+            >
+              {section.label}
+            </ExplorationLink>
+          ))}
+        </div>
       </div>
     </nav>
   );

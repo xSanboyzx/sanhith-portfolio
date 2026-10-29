@@ -13,6 +13,7 @@ import {
   type MouseEvent,
   type ReactNode,
 } from "react";
+import { getNavigationClearance } from "@/lib/navigation";
 
 type DossierGroup = "experience" | "projects";
 type DossierController = {
@@ -57,16 +58,6 @@ function readFragment() {
   } catch {
     return "";
   }
-}
-
-function navigationClearance() {
-  const header = document.querySelector<HTMLElement>(".site-header");
-  const tracker = document.querySelector<HTMLElement>("[data-homepage-tracker]");
-  return (
-    (header?.getBoundingClientRect().height ?? 0) +
-    (tracker?.getBoundingClientRect().height ?? 0) +
-    20
-  );
 }
 
 export function HomepageExploration({ children }: { children: ReactNode }) {
@@ -127,7 +118,7 @@ export function HomepageExploration({ children }: { children: ReactNode }) {
       const top =
         scrollTarget.getBoundingClientRect().top +
         window.scrollY -
-        navigationClearance();
+        getNavigationClearance();
       window.scrollTo({
         top: Math.max(0, top),
         behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches

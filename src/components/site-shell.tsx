@@ -102,9 +102,14 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
   }, [menuOpen]);
 
   function scrollToTop() {
-    if (window.location.hash !== "#main") {
-      window.history.pushState(null, "", "#main");
+    if (window.location.hash) {
+      window.history.pushState(
+        null,
+        "",
+        `${window.location.pathname}${window.location.search}`,
+      );
     }
+    document.getElementById("main")?.focus({ preventScroll: true });
     window.scrollTo({
       top: 0,
       behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
@@ -122,7 +127,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
         <div className="shell header-inner">
           <Link
             className="wordmark"
-            href="/#main"
+            href="/"
             onClick={() => setMenuOpen(false)}
             onNavigate={(event) => {
               if (pathname === "/") {
@@ -164,7 +169,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
               <Link
                 key={href}
                 style={{ "--nav-index": index } as CSSProperties}
-                href={`${href}#main`}
+                href={href}
                 onNavigate={(event) => {
                   if (pathname === href) {
                     event.preventDefault();
@@ -178,19 +183,28 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
               </Link>
             ))}
           </nav>
-          <Link className="header-contact" href="/contact">
+          <Link
+            className="header-contact"
+            href="/contact"
+            onNavigate={(event) => {
+              if (pathname === "/contact") {
+                event.preventDefault();
+                scrollToTop();
+              }
+            }}
+          >
             Let’s talk <Arrow />
           </Link>
         </div>
       </header>
-      <main id="main" key={pathname} className="page-content">
+      <main id="main" key={pathname} className="page-content" tabIndex={-1}>
         {children}
       </main>
       <footer className="shell site-footer">
         <div>
           <Link
             className="footer-brand"
-            href="/#main"
+            href="/"
             onNavigate={(event) => {
               if (pathname === "/") {
                 event.preventDefault();
@@ -206,7 +220,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
           <a href="#main" className="text-link">
             Back to top <span aria-hidden="true">↑</span>
           </a>
-          <span>© {new Date().getFullYear()} Sanhith</span>
+          <span>© {new Date().getFullYear()} Sanhith Amarathunge</span>
         </div>
       </footer>
     </>

@@ -348,6 +348,7 @@ h3 {
 .text-link {
   display: inline-flex;
   align-items: center;
+  min-height: 44px;
   gap: 17px;
   font-size: var(--text-small);
   line-height: 1.7;
@@ -481,12 +482,12 @@ h3 {
   right: 0;
   color: #9882ac;
   font:
-    8px/1.9 var(--font-jetbrains-mono),
+    12px/1.9 var(--font-jetbrains-mono),
     monospace;
   letter-spacing: 2px;
 }
 .orb-caption span {
-  color: #756082;
+  color: #b4a0c4;
 }
 .art-coordinate {
   position: absolute;
@@ -517,7 +518,7 @@ h3 {
   bottom: 40px;
   text-align: center;
   color: #8e829d;
-  font-size: 11px;
+  font-size: 12px;
 }
 .ticker {
   border-block: 1px solid var(--line);
@@ -530,6 +531,46 @@ h3 {
   display: flex;
   width: max-content;
   animation: ticker 55s linear infinite;
+}
+.ticker-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  margin-bottom: 18px;
+  min-height: 44px;
+}
+.ticker-controls h2 {
+  font-size: 15px;
+  line-height: 1.6;
+  letter-spacing: 0;
+  color: var(--text);
+}
+.ticker-toggle {
+  min-height: 44px;
+  padding: 10px 14px;
+  border: 1px solid #9f78bb;
+  border-radius: 6px;
+  background: #191020;
+  color: #dcc8ff;
+  font-size: 12px;
+  cursor: pointer;
+}
+.ticker-toggle:hover {
+  background: #2b1b38;
+}
+.ticker-toggle[hidden],
+.ticker-track[hidden] {
+  display: none;
+}
+.ticker-static:not(.sr-only) {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px 32px;
+  padding: 0;
+  list-style: none;
 }
 .ticker-group {
   --ticker-gap: clamp(28px, 3vw, 64px);
@@ -559,7 +600,9 @@ h3 {
   flex-shrink: 0;
   object-fit: contain;
 }
-.ticker:hover .ticker-track {
+.ticker:hover .ticker-track,
+.ticker:focus-within .ticker-track,
+.ticker[data-paused="true"] .ticker-track {
   animation-play-state: paused;
 }
 .section {
@@ -886,7 +929,7 @@ h2 {
 .chapter-number {
   color: #b78aff;
   font:
-    11px var(--font-jetbrains-mono),
+    12px var(--font-jetbrains-mono),
     monospace;
 }
 .chapter h3 {
@@ -978,7 +1021,12 @@ h2 {
   padding-top: 20px;
 }
 .contact-email {
+  display: inline-block;
+  min-height: 44px;
+  max-width: 100%;
+  padding-block: 8px;
   font-size: var(--text-small);
+  line-height: 1.8;
   overflow-wrap: anywhere;
   text-decoration: underline;
   text-underline-offset: 4px;
@@ -1055,6 +1103,11 @@ h2 {
   opacity: 1;
   transform: none;
 }
+.reveal-ready:focus-within {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
 @keyframes enter {
   from {
     opacity: 0;
@@ -1120,7 +1173,7 @@ h2 {
 .impact-strip p > span {
   display: block;
   color: var(--muted);
-  font-size: 11px;
+  font-size: 12px;
 }
 .work-aside,
 .experience-date,
@@ -1129,7 +1182,7 @@ h2 {
 .concept-bottom,
 .project-meta {
   font-family: var(--font-jetbrains-mono), monospace;
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.7;
   letter-spacing: 0.7px;
 }
@@ -1182,7 +1235,7 @@ h2 {
 }
 .work-highlight {
   color: #c99df9;
-  font-size: 10px;
+  font-size: 12px;
   letter-spacing: 1.3px;
 }
 .experience-body h3 {
@@ -1294,7 +1347,7 @@ h2 {
   margin: 0;
 }
 .work-tags li {
-  font-size: 11px;
+  font-size: 12px;
   color: #c9b5d9;
   padding: 5px 10px;
   border: 1px solid #b78aff25;
@@ -1322,6 +1375,7 @@ h2 {
   border-color: #b78aff70;
 }
 .project-concept {
+  container-type: inline-size;
   height: 260px;
   position: relative;
   overflow: hidden;
@@ -1332,19 +1386,24 @@ h2 {
   top: 22px;
   left: 24px;
   color: #c3a7d8;
-  font-size: 10px;
+  font-size: 12px;
   z-index: 1;
+  max-width: calc(100% - 48px);
 }
 .concept-bottom {
   position: absolute;
   bottom: 22px;
   inset-inline: 24px;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   gap: 8px;
   color: #ac91c2;
-  font-size: 9px;
+  font-size: 12px;
   letter-spacing: 1.5px;
+}
+.concept-bottom > span {
+  white-space: nowrap;
 }
 .aurora-concept {
   background:
@@ -1405,7 +1464,7 @@ h2 {
 }
 .model-inputs span {
   font:
-    9px var(--font-jetbrains-mono),
+    12px var(--font-jetbrains-mono),
     monospace;
   padding: 8px 10px;
   border: 1px solid #b78aff33;
@@ -1435,7 +1494,7 @@ h2 {
   font-size: 25px;
 }
 .model-core small {
-  font-size: 10px;
+  font-size: 12px;
   color: #bba0d3;
 }
 .model-output {
@@ -1446,7 +1505,7 @@ h2 {
 .model-output small {
   display: block;
   font:
-    8px var(--font-jetbrains-mono),
+    12px var(--font-jetbrains-mono),
     monospace;
   margin-top: 6px;
   color: #a58dbd;
@@ -1459,7 +1518,7 @@ h2 {
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 8px;
-  font-size: 9px;
+  font-size: 12px;
   color: #aa90bf;
 }
 .featured-project-title {
@@ -1539,14 +1598,52 @@ h2 {
   inset-inline: 24px;
 }
 .featured-project .model-core {
-  width: clamp(64px, 7vw, 85px);
-  height: clamp(64px, 7vw, 85px);
+  width: 85px;
+  height: 85px;
 }
 .featured-project .model-inputs span {
   padding-inline: 6px;
 }
 .featured-project .model-output {
   flex-shrink: 0;
+}
+@container (max-width: 360px) {
+  .model-visual {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 16px minmax(0, 1fr);
+    grid-template-rows: 72px 12px 44px;
+    justify-items: center;
+    inset-block: 64px 40px;
+  }
+  .model-inputs {
+    grid-column: 1;
+    grid-row: 1 / -1;
+  }
+  .model-connector:first-of-type {
+    grid-column: 2;
+    grid-row: 1;
+    width: 16px;
+    min-width: 0;
+  }
+  .featured-project .model-core {
+    grid-column: 3;
+    grid-row: 1;
+    width: 72px;
+    height: 72px;
+  }
+  .model-connector:nth-of-type(2) {
+    grid-column: 3;
+    grid-row: 2;
+    width: 1px;
+    min-width: 0;
+    height: 12px;
+  }
+  .model-output {
+    grid-column: 3;
+    grid-row: 3;
+    font-size: 23px;
+    line-height: 1.2;
+  }
 }
 .project-case-studies {
   grid-template-columns: minmax(0, 1fr);
@@ -1594,6 +1691,7 @@ h2 {
 }
 .project-case-study-section {
   min-width: 0;
+  overflow-wrap: anywhere;
 }
 .project-case-study-problem {
   grid-column: 1 / -1;
@@ -1747,7 +1845,7 @@ html:has([data-homepage-tracker]) {
   margin-bottom: 10px;
   color: #a896b7;
   font-family: var(--font-jetbrains-mono), monospace;
-  font-size: 9px;
+  font-size: 12px;
   line-height: 1.6;
   letter-spacing: 1.5px;
 }
@@ -1915,8 +2013,7 @@ html:has([data-homepage-tracker]) {
 @media (max-width: 700px) {
   html:has([data-homepage-tracker]) {
     scroll-padding-top: calc(
-      var(--homepage-header-height, 76px) +
-      var(--homepage-tracker-height, 59px) + 20px
+      var(--homepage-header-height, 76px) + 20px
     );
   }
   .exploration-section-actions {

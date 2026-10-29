@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Arrow, Orb, SectionLabel } from "@/components/design";
 import { TerminalHeading } from "@/components/terminal-heading";
 import { contactDetails } from "@/lib/contact-details";
+import { education } from "@/lib/portfolio-content";
 import { createPageMetadata } from "@/lib/site-metadata";
 
 export const metadata = createPageMetadata({
@@ -18,10 +19,10 @@ export default function About() {
       <div className="page-heading">
         <TerminalHeading lines={["Behind the code.", "A curious mind."]} />
         <p>
-          Hey, I’m Sanhith, a final-year student at Ontario Tech pursuing a
-          Bachelor of Science in Computer Science (Co-op), specializing in Data
-          Science. I’m graduating in October 2027, and I’m interested in both
-          building software and understanding what we can learn from data.
+          Hey, I’m Sanhith, a final-year student at {education.university} pursuing
+          a {education.degree}, specializing in {education.specialization}. I’m
+          graduating in {education.expectedGraduation}, and I’m interested in
+          both building software and understanding what we can learn from data.
         </p>
       </div>
       <div className="about-grid">
@@ -91,10 +92,11 @@ export default function About() {
         <SectionLabel number="03">WHAT’S NEXT</SectionLabel>
         <h2 id="about-next-heading">A new chapter ahead.</h2>
         <p>
-          After graduating in October 2027, I’m looking to start a full-time role
-          in software development or data. I’d like to keep building, learn from
-          experienced teammates, and contribute to work people find useful. If
-          that sounds like a fit for your team, I’d love to connect.
+          After graduating in {education.expectedGraduation}, I’m looking to
+          start a full-time role in software development or data. I’d like to
+          keep building, learn from experienced teammates, and contribute to work
+          people find useful. If that sounds like a fit for your team, I’d love
+          to connect.
         </p>
         <div className="button-row">
           <Link href="/contact" className="button primary">

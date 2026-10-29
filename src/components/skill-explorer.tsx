@@ -112,7 +112,7 @@ export function SkillExplorer({
               >
                 <span>{example.label}</span>
                 <span className={styles.arrow} aria-hidden="true">
-                  ↗
+                  ↑
                 </span>
               </ExplorationLink>
             ))}

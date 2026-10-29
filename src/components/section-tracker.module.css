@@ -8,12 +8,26 @@
   backdrop-filter: blur(18px);
 }
 
+.inner {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: min(780px, calc(100% - 40px));
+  margin-inline: auto;
+}
+
+.label {
+  flex-shrink: 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
 .links {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 6px;
-  width: min(620px, calc(100% - 40px));
-  margin-inline: auto;
+  flex: 1;
+  min-width: 0;
 }
 
 .link {
@@ -69,13 +83,23 @@
 
 @media (max-width: 700px) {
   .tracker {
-    top: var(--homepage-header-height, 76px);
+    position: static;
     padding: 7px 0;
+  }
+
+  .inner {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 4px;
+    width: calc(100% - 20px);
+  }
+
+  .label {
+    padding-inline: 5px;
   }
 
   .links {
     gap: 2px;
-    width: calc(100% - 20px);
   }
 
   .link {

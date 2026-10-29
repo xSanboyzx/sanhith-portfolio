@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { contactDetails } from "@/lib/contact-details";
+import { education } from "@/lib/portfolio-content";
 import { LanguageRibbon } from "@/components/language-ribbon";
 import { HomeHero } from "@/components/home-hero";
 import { Arrow, SectionLabel } from "@/components/design";
@@ -52,7 +53,7 @@ export default function Home() {
           </p>
         </ExplorationLink>
         <ExplorationLink href="#education" className="impact-link">
-          <strong>2027</strong>
+          <strong>{education.graduationYear}</strong>
           <p>
             Expected graduation<span>Ontario Tech · Computer Science</span>
           </p>
