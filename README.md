@@ -151,6 +151,12 @@ npm run deploy
 
 No database or R2 cache is configured. If the Workers toolchain encounters a Windows-specific build issue, use WSL or the Linux CI environment.
 
+Security response headers are shared in `src/lib/security-headers.ts` and applied by `next.config.ts` and the `worker.mjs` entry point. The Worker wraps OpenNext responses so redirects and image optimization receive the same protections as pages. Keep `public/_headers` in sync for assets served directly by Cloudflare: MIME sniffing and framing are blocked, cross-origin referrers are limited to the origin, and camera, microphone, and geolocation access are disabled. Production responses on `sanhithamarathunge.net` also send HSTS with a one-year lifetime; subdomains and preload are not included. If the production domain changes, update the shared hostname and the asset HSTS host rule.
+
+The Cloudflare deployment enforces a CSP that permits local resources and build-approved inline scripts and style blocks. `npm run build` generates their SHA-256 hashes and trusted HTML documents in `.next/csp.json`; `npm run build:worker` also writes the asset policies into the generated `_headers` file. Normal page loads serve the built HTML with ETag revalidation, while RSC navigation continues through OpenNext. Script event handlers, `eval`, external connections, framing, and form submissions are blocked. Inline style attributes remain allowed for the animations. The standalone character preview has narrowly scoped exceptions for its own SVG embed. Unknown HTML routes use the build-time 404 document so request-specific scripts cannot invalidate its hashes. Adding dynamic pages or ISR requires revisiting the policy; the build rejects those pages.
+
+Use `npm run preview` to test the deployed CSP rather than the Next.js development server, which does not attach this production policy. While the preview is running, execute `npm run test:csp` in another terminal to verify the emitted headers, inline script/style authorization, error pages, and cached asset responses. An alternate origin can be supplied as `npm run test:csp -- https://example.com`.
+
 See the [Cloudflare OpenNext guide](https://developers.cloudflare.com/workers/framework-guides/web-apps/opennext/) and [Workers Builds configuration](https://developers.cloudflare.com/workers/ci-cd/builds/configuration/) for provider setup.
 
 ## License and credits

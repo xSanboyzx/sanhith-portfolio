@@ -1,2 +1,13 @@
+# Keep these in sync with src/lib/security-headers.ts for application responses.
+# CSP is added to the generated asset headers by npm run build:worker.
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+https://sanhithamarathunge.net/*
+  Strict-Transport-Security: max-age=31536000
+
 /_next/static/*
   Cache-Control: public, max-age=31536000, immutable

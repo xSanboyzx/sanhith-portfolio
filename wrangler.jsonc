@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "sanhith-portfolio",
-  "main": ".open-next/worker.js",
+  "main": "worker.mjs",
   "compatibility_date": "2026-09-22",
   "compatibility_flags": ["nodejs_compat"],
   "assets": {
