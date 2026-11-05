@@ -42,7 +42,7 @@ for (const file of applicationFiles) {
   }
 }
 
-const policy = createPolicy({ scripts: [...scripts].sort(), styles: [...styles].sort() });
+const policy = createPolicy({ scripts: [...scripts].sort(), styles: [...styles].sort(), media: true });
 checkHeaderLength(policy);
 
 const assetPolicies = [];

@@ -23,6 +23,7 @@ export function createPolicy({
   styles = [],
   objects = false,
   embedding = false,
+  media = false,
 } = {}) {
   return [
     "default-src 'none'",
@@ -35,6 +36,7 @@ export function createPolicy({
     "font-src 'self'",
     "connect-src 'self'",
     "manifest-src 'self'",
+    `media-src '${media ? "self" : "none"}'`,
     `object-src '${objects ? "self" : "none"}'`,
     // Browsers also check frame-src for documents embedded through <object>.
     `frame-src '${objects ? "self" : "none"}'`,
