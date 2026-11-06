@@ -1,0 +1,13 @@
+WEBVTT
+
+00:00.000 --> 00:05.000
+MindMetrics runs the actual trained model in your browser using fictional profiles.
+
+00:05.000 --> 00:15.000
+Adjust sleep duration and compare the baseline with the changed scenario.
+
+00:15.000 --> 00:22.000
+Inspect held-out model evaluation, simple baselines, and prediction errors.
+
+00:22.000 --> 00:30.000
+Predictions describe associations in synthetic data. They have no clinical or causal interpretation.

@@ -212,7 +212,7 @@ export const projects: readonly ProjectRecord[] = [
       "Explored 3,500 synthetic samples across 15 input features.",
       "Separated training, validation, and test data, fitting the scaler on training data only.",
       "Trained a PyTorch regression network and evaluated MAE, RMSE, and R².",
-      "Built a Streamlit interface for entering features and displaying model predictions.",
+      "Shipped a browser model explorer with verified ONNX inference, fictional profiles, and baseline comparisons.",
     ],
     caseStudy: {
       problem:
@@ -221,18 +221,23 @@ export const projects: readonly ProjectRecord[] = [
         "Prepared 3,500 synthetic participant records with 15 input features, including sleep, physical activity, device use, and self-reported mental-health indicators.",
         "Split the data into 70% training, 15% validation, and 15% test sets. Fitted StandardScaler on the training split only, then applied the same transformation to validation and test data.",
         "Trained a PyTorch regression network with residual blocks, batch normalization, dropout, and Adam optimization. Used validation loss to track training and evaluated held-out predictions with MAE, RMSE, and R².",
-        "Implemented a Streamlit interface that orders and scales user inputs before passing them to a model and displaying an estimated score. The repository includes the interface and training notebook.",
+        "Reproduced test MAE 1.637, RMSE 2.122, and R² 0.531 for the committed checkpoint; a training-only linear baseline reached R² 0.492 on the same test split.",
+        "Built a browser model explorer using ONNX Runtime Web, with fictional profiles, scenario comparisons, and held-out evaluation. Shared model and feature definitions keep the corrected Streamlit companion aligned with the export pipeline.",
       ],
       contributions: [
         "Handled most of the implementation in a two-person academic team, bringing together data preparation, model training, evaluation, and the Streamlit interface.",
       ],
       note:
-        "The model was trained on synthetic data for an academic demonstration; its predictions illustrate learned patterns within that dataset.",
+        "The model was trained on synthetic data for an academic demonstration. Predictions illustrate associations within that dataset, with no clinical or causal interpretation. The release documents the original checkpoint-selection limitation and evaluates the saved weights as committed.",
     },
     resources: [
       {
         label: "Setup & README",
         href: "https://github.com/xSanboyzx/MindMetrics-ML/blob/main/README.md",
+      },
+      {
+        label: "Verified showcase release",
+        href: "https://github.com/xSanboyzx/MindMetrics-ML/tree/showcase/model-explorer",
       },
       {
         label: "Training notebook",

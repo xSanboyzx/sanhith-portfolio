@@ -5,6 +5,7 @@ import { Arrow, SectionLabel } from "@/components/design";
 import { Dossier, ExpandAllControl } from "@/components/homepage-exploration";
 import { SkillExplorer } from "@/components/skill-explorer";
 import { AuroraShowcase } from "@/components/aurora-showcase";
+import { MindMetricsShowcase } from "@/components/mindmetrics-showcase";
 import {
   education,
   experience,
@@ -314,6 +315,7 @@ function ProjectCaseStudy({ project }: { project: ProjectRecord }) {
   return (
     <div className="project-case-study-content">
       {project.artwork === "aurora" && <AuroraShowcase />}
+      {project.artwork === "metrics" && <MindMetricsShowcase />}
       <section
         className="project-case-study-section project-case-study-problem"
         aria-labelledby={`${project.id}-problem`}
